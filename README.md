@@ -1,12 +1,12 @@
 # Relay Tactics — public source
 
-Play: https://relay-tactics-lira.grassy-sage-5926.chatgpt.site
+Current browser game: https://relay-tactics-lira.grassy-sage-5926.chatgpt.site
 
-The complete source is in `relay-tactics-source.zip` in this repository. Extract it into an empty directory, then run the commands below from that directory. No account or wallet is needed to play. The source includes the game engine, API, browser UI, bot, SQL migration, tests and pinned dependencies.
+The complete source is in `relay-tactics-source.zip`. Extract it into an empty directory before running local commands. Archive SHA-256: `140c9540add399dc72f3b98a8b472bbfeb40ecd3b4bd2c0717017a00da0b87f8`.
 
-Source archive SHA-256: `69782f61fc4e0ff1992e33152d05e2fb26954d7b9fd3899afe48025345be11cd`.
+**Prepared alternative:** standalone Node HTTP server, the same React UI and rules, and a Free Render deployment recipe. The repository-root Dockerfile unpacks and builds the source ZIP. No Render account or service has been created; its Docker image has not been built here. See [DEPLOY.md](DEPLOY.md) for the exact configuration, authorization needed and ephemeral-room limitation.
 
-Verification: 23 automated tests, TypeScript and the production build passed. Hosting confirms a public deployment and the live `rooms` database table. A direct external HTTP check was denied by the hosting edge (403/1010) before reaching the API; a completed remote match, anonymous agent access and mobile interaction remain unverified. Do not treat publication as an accepted bounty submission or guaranteed payment.
+**Executed:** 29 automated tests, TypeScript, Sites production build, standalone client build, and built assets served over loopback HTTP. Independent HTTP clients completed 2/3/4-seat games and all replay states were reconstructed. The owner completed a mobile match on Sites. **Pending:** live external-bot access, standalone browser QA and public-host checks. The Sites edge returned 403 to the development HTTP client. No bounty submission, acceptance or payment is claimed.
 
 ---
 
@@ -29,7 +29,7 @@ Two to four players grow a network on a 5×5 grid from their numbered corner hom
 
 ## Run locally
 
-Use Node 24 for the verification suite (`node:sqlite` is used in persistence tests). The app supports the starter's Node `>=22.13` runtime. The dependency pin is `pnpm@11.25.0`; use Corepack or that exact pnpm version. Do not run multiple installers at once.
+Use Node 24.19.0 for the portable server and verification suite (`node:sqlite` is used for persistence). The starter Worker supports Node `>=22.13` during builds. The dependency pin is `pnpm@11.25.0`; use Corepack or that exact pnpm version. Do not run multiple installers at once. The standalone Node server and a prepared free-host recipe are documented in [DEPLOY.md](DEPLOY.md).
 
 ```sh
 corepack pnpm install --frozen-lockfile
@@ -73,7 +73,9 @@ npm run build
 npm run evaluate         # finite, deterministic policy comparison
 ```
 
-The included `validation/` directory records executed checks. Tests use in-process HTTP Request/Response objects and a real SQLite database with a D1-compatible adapter. They do not constitute a live Cloudflare deployment test. Visual/browser QA and public anonymous access have not been verified yet.
+The included `validation/` directory records executed checks. Tests cover the rules and in-process Request/Response handlers, real SQLite storage, and independent HTTP clients completing 2/3/4-seat matches through a Node server. Every replay state is reconstructed and checked. A separate short harness serves the actual built HTML/JS/CSS over loopback HTTP. These checks do not constitute a live Render test or browser QA of the standalone build.
+
+The Sites version was opened and played by the owner on a mobile browser: one observed match finished all 12 rounds with 24 actions and a final score of 3–56. Its full replay was not independently downloaded. Ordinary programmatic HTTP requests from the development environment returned Cloudflare 403, so a public external-bot test on that deployment remains blocked. The portable version has not been deployed. No Taskmarket submission or payment is claimed.
 
 The 12 policy matchups are a small heuristic comparison, not proof of balanced human play or absence of a dominant strategy. Every tested policy lost at least once, but seat 0 won 11 of 12 matchups: first-seat advantage remains a known balance limitation. Three/four-player strategic balance and real-user fun require play-testing.
 
@@ -81,7 +83,7 @@ This is casual cooperative room access: anyone with the code can control a seat.
 
 ## Deploy
 
-The app is a Cloudflare Worker with a D1 binding named `DB`. Use the provided Sites workflow to build and publish it; the generated SQL migration must be applied by the hosting platform. A public anonymous game URL and a public source repository are both required by the bounty. Verification should include anonymous access, separate clients sharing a match, replay and the sample bot against the deployed API. Marketplace receipts and wallet activity are tracked separately from the public game source.
+The existing Sites deployment is a Cloudflare Worker with a D1 binding named `DB`. Use the provided Sites workflow to build and publish it; the generated SQL migration must be applied by the hosting platform. The alternative standalone Node/SQLite build is prepared in [DEPLOY.md](DEPLOY.md); its free-host storage limitations are explicit. A public anonymous game URL and a public source repository are both required by the bounty. Verification should include anonymous access, separate clients sharing a match, replay and the sample bot against the deployed API. Marketplace receipts and wallet activity are tracked separately from the public game source.
 
 ## Attribution
 

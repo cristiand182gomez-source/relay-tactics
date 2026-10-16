@@ -1,0 +1,8 @@
+# Preparation only: no account, service or paid resource has been created.
+services:
+  - type: web
+    name: relay-tactics-lira
+    runtime: docker
+    plan: free
+    autoDeployTrigger: "off"
+    healthCheckPath: /api/health
