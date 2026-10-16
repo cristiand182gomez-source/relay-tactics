@@ -1,12 +1,14 @@
-# Relay Tactics — public source
+# Relay Tactics
 
-Current browser game: https://relay-tactics-lira.grassy-sage-5926.chatgpt.site
+**Play:** https://relay-tactics-lira.onrender.com/
 
-The complete source is in `relay-tactics-source.zip`. Extract it into an empty directory before running local commands. Archive SHA-256: `140c9540add399dc72f3b98a8b472bbfeb40ecd3b4bd2c0717017a00da0b87f8`.
+A compact multiplayer strategy game for browser players and HTTP agents. No player account, wallet or installation is required. The Free demo can take about a minute to wake; rooms are lost on server restart, redeploy or sleep. Save replay JSON after a match.
 
-**Prepared alternative:** standalone Node HTTP server, the same React UI and rules, and a Free Render deployment recipe. The repository-root Dockerfile unpacks and builds the source ZIP. No Render account or service has been created; its Docker image has not been built here. See [DEPLOY.md](DEPLOY.md) for the exact configuration, authorization needed and ephemeral-room limitation.
+**Source:** extract `relay-tactics-source.zip` into an empty directory. SHA-256: `140c9540add399dc72f3b98a8b472bbfeb40ecd3b4bd2c0717017a00da0b87f8`. This is the immutable source archive used by runtime commit `3bccc920eee8f320549798f6aad6ccec568f82c6`. Deployment-preparation notes inside that archive predate the live verification; current status and deployment instructions are in this README, [DEPLOY.md](DEPLOY.md) and [LIVE_CHECKS.json](LIVE_CHECKS.json). Documentation-only updates do not change the deployed source archive.
 
-**Executed:** 29 automated tests, TypeScript, Sites production build, standalone client build, and built assets served over loopback HTTP. Independent HTTP clients completed 2/3/4-seat games and all replay states were reconstructed. The owner completed a mobile match on Sites. **Pending:** live external-bot access, standalone browser QA and public-host checks. The Sites edge returned 403 to the development HTTP client. No bounty submission, acceptance or payment is claimed.
+**Executed:** 29 automated tests, TypeScript, both production builds, Docker build on Render, public HTML/API checks, complete HTTPS matches with 2/3/4 seats and reconstruction of all 80 replay states. Two browser tabs and the sample bot shared a match; these were two tabs in the same browser, not two separate browser profiles. See `live-replays.zip` for the three complete public test recordings and sample-bot log.
+
+**Bounty status:** prepared for submission; no accepted entry or payment is claimed.
 
 ---
 
@@ -75,7 +77,7 @@ npm run evaluate         # finite, deterministic policy comparison
 
 The included `validation/` directory records executed checks. Tests cover the rules and in-process Request/Response handlers, real SQLite storage, and independent HTTP clients completing 2/3/4-seat matches through a Node server. Every replay state is reconstructed and checked. A separate short harness serves the actual built HTML/JS/CSS over loopback HTTP. These checks do not constitute a live Render test or browser QA of the standalone build.
 
-The Sites version was opened and played by the owner on a mobile browser: one observed match finished all 12 rounds with 24 actions and a final score of 3–56. Its full replay was not independently downloaded. Ordinary programmatic HTTP requests from the development environment returned Cloudflare 403, so a public external-bot test on that deployment remains blocked. The portable version has not been deployed. No Taskmarket submission or payment is claimed.
+The Sites version was opened and played by the owner on a mobile browser: one observed match finished all 12 rounds with 24 actions and a final score of 3–56. Its full replay was not independently downloaded. Ordinary programmatic HTTP requests from the development environment returned Cloudflare 403, so a public external-bot test on that deployment remains blocked. The portable Docker build was subsequently deployed on Render and verified publicly over HTTPS. Two browser tabs shared a 3-seat match with an independent sample-bot process; separate HTTP checks completed 2- and 4-seat matches. All 80 recorded replay states were reconstructed. See the repository-root LIVE_CHECKS.json and live-replays.zip. No Taskmarket submission or payment is claimed.
 
 The 12 policy matchups are a small heuristic comparison, not proof of balanced human play or absence of a dominant strategy. Every tested policy lost at least once, but seat 0 won 11 of 12 matchups: first-seat advantage remains a known balance limitation. Three/four-player strategic balance and real-user fun require play-testing.
 

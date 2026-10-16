@@ -1,0 +1,204 @@
+{
+  "checkedAt": "2026-10-16T19:23:46.302486+00:00",
+  "publicGameURL": "https://relay-tactics-lira.onrender.com/",
+  "sourceCommit": "3bccc920eee8f320549798f6aad6ccec568f82c6",
+  "sourceArchiveSHA256": "140c9540add399dc72f3b98a8b472bbfeb40ecd3b4bd2c0717017a00da0b87f8",
+  "localTestsPassed": 29,
+  "typecheck": "passed",
+  "sitesBuild": "passed",
+  "standaloneBuild": "passed",
+  "dockerBuild": "passed on Render",
+  "publicHealthHTTP": 200,
+  "publicHTMLHTTP": 200,
+  "matches": [
+    {
+      "code": "FGASQH",
+      "capacity": 2,
+      "status": "finished",
+      "version": 27,
+      "moves": 24,
+      "scores": [
+        44,
+        32
+      ],
+      "winners": [
+        0
+      ],
+      "elapsedMs": 7639,
+      "initialHistory": 0,
+      "completeReplayVerified": true,
+      "firstMoves": [
+        {
+          "player": 0,
+          "move": {
+            "kind": "dash",
+            "path": [
+              1,
+              2
+            ],
+            "cost": 4
+          },
+          "cause": "human"
+        },
+        {
+          "player": 1,
+          "move": {
+            "kind": "dash",
+            "path": [
+              23,
+              22
+            ],
+            "cost": 4
+          },
+          "cause": "human"
+        },
+        {
+          "player": 0,
+          "move": {
+            "kind": "charge",
+            "cost": 0
+          },
+          "cause": "human"
+        }
+      ]
+    },
+    {
+      "code": "F2SM44",
+      "capacity": 3,
+      "status": "finished",
+      "version": 28,
+      "moves": 24,
+      "scores": [
+        11,
+        18,
+        22
+      ],
+      "winners": [
+        2
+      ],
+      "elapsedMs": 7917,
+      "initialHistory": 3,
+      "completeReplayVerified": true,
+      "firstMoves": [
+        {
+          "player": 0,
+          "move": {
+            "kind": "charge",
+            "cost": 0
+          },
+          "cause": "human"
+        },
+        {
+          "player": 1,
+          "move": {
+            "kind": "charge",
+            "cost": 0
+          },
+          "cause": "human"
+        },
+        {
+          "player": 2,
+          "move": {
+            "kind": "dash",
+            "path": [
+              3,
+              2
+            ],
+            "cost": 4
+          },
+          "cause": "human"
+        }
+      ]
+    },
+    {
+      "code": "823USE",
+      "capacity": 4,
+      "status": "finished",
+      "version": 37,
+      "moves": 32,
+      "scores": [
+        12,
+        9,
+        12,
+        20
+      ],
+      "winners": [
+        3
+      ],
+      "elapsedMs": 9368,
+      "initialHistory": 0,
+      "completeReplayVerified": true,
+      "firstMoves": [
+        {
+          "player": 0,
+          "move": {
+            "kind": "dash",
+            "path": [
+              1,
+              2
+            ],
+            "cost": 4
+          },
+          "cause": "human"
+        },
+        {
+          "player": 1,
+          "move": {
+            "kind": "dash",
+            "path": [
+              23,
+              22
+            ],
+            "cost": 4
+          },
+          "cause": "human"
+        },
+        {
+          "player": 2,
+          "move": {
+            "kind": "dash",
+            "path": [
+              9,
+              14
+            ],
+            "cost": 4
+          },
+          "cause": "human"
+        }
+      ]
+    }
+  ],
+  "browserVerification": {
+    "sameBrowserTabs": 2,
+    "separateBrowserProfiles": false,
+    "room": "F2SM44",
+    "browserSeatActions": [
+      {
+        "player": 0,
+        "move": "charge"
+      },
+      {
+        "player": 1,
+        "move": "charge"
+      }
+    ],
+    "bothViewsShowedScores": [
+      11,
+      18,
+      22
+    ],
+    "replaySliderReached": 24,
+    "sampleBotRanAsIndependentNodeProcess": true,
+    "sampleBotCompleted": true
+  },
+  "limits": [
+    "Free host can sleep and wake slowly; rooms are lost on restart, redeploy or sleep.",
+    "Small policy sample found first-seat advantage; no exhaustive strategic-balance claim.",
+    "Room codes permit casual seat control; no player authentication."
+  ],
+  "marketplace": {
+    "submitted": false,
+    "accepted": false,
+    "paid": false
+  }
+}

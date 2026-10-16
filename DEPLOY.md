@@ -18,13 +18,13 @@ Open `http://localhost:10000`. The server binds `0.0.0.0`, uses `PORT` (default 
 
 Behind TLS termination, set `PUBLIC_ORIGIN=https://your-game.example` to the exact browser origin. Render's supplied `RENDER_EXTERNAL_URL` is used automatically when `PUBLIC_ORIGIN` is absent. Arbitrary forwarded-host headers do not change the allowed browser origin. CLI agents need no Origin header.
 
-## Prepared Render configuration — not deployed
+## Render configuration and verified deployment
 
 The included `Dockerfile` builds the client and runs the server as the non-root `node` user. The final image has no third-party Node runtime dependencies. `render.yaml` selects one **Free** web service, `/api/health`, and disables automatic deployments. No paid disk, paid database, registry credential or payment method is configured.
 
 The public repository distributes the complete project in `relay-tactics-source.zip`. Its repository-root Dockerfile unpacks that ZIP before building. To deploy the extracted project directly, use the Dockerfile inside the ZIP instead. These are two packaging entry points for the same source.
 
-An actual Render deployment has **not** been attempted. Docker is unavailable in the development environment, so the Docker image has **not** been built. The portable Node server, built browser assets and HTTP protocol were tested directly with Node 24.19.0. A successful local build does not establish public-host availability.
+The Docker image was built successfully by Render and the service reached Live on 16 October 2026. Public URL: https://relay-tactics-lira.onrender.com/. The public HTML and JSON health returned HTTP 200. Complete public 2/3/4-seat games and all replay states were verified. The sample bot ran as a separate Node process in a room with two browser tabs. See LIVE_CHECKS.json and live-replays.zip. Docker remains unavailable in the local development environment; the successful Docker build was executed on Render.
 
 ### Free-host limitations
 
@@ -35,10 +35,12 @@ According to [Render's official free-service documentation](https://render.com/d
 - Free quotas apply. Without a payment method, exceeding the included bandwidth suspends services; exceeding build minutes disables new builds. No payment method should be added for this task.
 - Free Postgres expires after 30 days. It is not configured here because creating another database and its credentials would need separate authorization.
 
-### Authorization still needed
+### Operator setup and redeployment
 
-No Render account or service has been created. The owner must authorize a Render account, its applicable terms, and GitHub deployment access restricted to this repository before deployment. Review the actual permission screen before confirming; do not grant access to all repositories. If a payment method or a paid plan is required, stop.
+The deployed demo uses one Free web service, no persistent disk or external database, no registry credential, Auto-Deploy Off and health check `/api/health`. The GitHub app installation was limited to the single `relay-tactics` repository. Operator deployment requires the operator's own hosting account and Git-provider authorization; players and HTTP agents do not need these.
 
-After an authorized deployment, independently verify the public HTML, API health, create/join/start/move flow, two independent clients, full replay reconstruction, and sample bot over the public HTTPS URL. Check the Taskmarket task still accepts submissions, then submit once and retain the receipt. A deployed game is neither an accepted submission nor a payment.
+The source ZIP is immutable from the tested runtime commit. The repository-root Dockerfile validates its checksum, unpacks it and builds the client. Current deployment status is kept in the repository-root documentation. The archive contains historical preparation notes; those do not supersede the later verification here.
+
+After a code change or redeployment, verify the public page, JSON API, a complete match and replay again. Marketplace submission, acceptance and payment are separate states.
 
 References: [Docker on Render](https://render.com/docs/docker), [Git provider access](https://render.com/docs/git-provider), [default environment variables](https://render.com/docs/environment-variables), [terms](https://render.com/terms).

@@ -1,0 +1,33 @@
+TASKMARKET — TSK-V6J8MSSD
+Build a Fun Multiplayer Strategy Game for Agents AND Humans
+
+PUBLIC GAME URL
+https://relay-tactics-lira.onrender.com/
+
+PUBLIC SOURCE REPOSITORY
+https://github.com/cristiand182gomez-source/relay-tactics
+
+PITCH
+Relay Tactics is a compact 2–4 player turn-based strategy game where you grow a connected network, contest rotating beacons and cut rival branches while managing energy. Browser players and HTTP agents share the same room code, with optional built-in bots, clear scoring, a match log and a scrubbable replay; the repository includes a documented JSON API and a runnable sample bot. Complete public 2/3/4-player matches and every replay state were verified over HTTPS; the Free demo host can wake slowly and resets rooms when it restarts.
+
+VERIFICATION
+29 local tests; TypeScript; Sites and standalone builds; Docker build on Render.
+Public HTTP/JSON API and full replay reconstruction:
+- 2 seats, FGASQH: 24 actions, scores 44–32.
+- 3 seats, F2SM44: 24 actions, scores 11–18–22.
+- 4 seats, 823USE: 32 actions, scores 12–9–12–20.
+The three-seat room included two browser tabs and an independent sample-bot process.
+Evidence: LIVE_CHECKS.json and live-replays.zip in the public repository.
+
+SOURCE
+Extract relay-tactics-source.zip for the complete source, pinned dependencies,
+engine, UI, API, sample bot, migration and tests. Current deployment notes
+are in the repository-root README and DEPLOY.md.
+
+LIMITS
+Free demo hosting can sleep and loses rooms on restart, redeploy or sleep.
+Save replay JSON after a match. Anyone with a room code can control a seat;
+this is casual play without accounts or stakes. A small policy comparison
+found first-seat advantage; exhaustive strategic balance is not claimed.
+
+Original game prepared for Lira Ventures with AI assistance.
